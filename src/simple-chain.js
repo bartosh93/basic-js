@@ -6,20 +6,32 @@ const chainMaker = {
     return this.arr.length;
   },
   addLink(value) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.arr.push(value);
+    return this;
   },
   removeLink(position) {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    if( typeof(position) != 'number' || position > this.arr.length || position <= 0 || (position^0) !== position   ) 
+    {
+      this.arr.splice(0);
+      throw new Error('Position number is not correct');
+    }
+      this.arr.splice(position-1, 1);
+      return this
   },
   reverseChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    this.arr.reverse();
+      return this
   },
   finishChain() {
-    throw new CustomError('Not implemented');
-    // remove line with error and write your code here
+    let newArr = this.arr.map(i => {
+      if(i === " "){
+        return "( )";
+      } else {
+        return `( ${i} )`;
+      }
+    }).join("~~");
+    this.arr = [];
+    return newArr;
   }
 };
 
