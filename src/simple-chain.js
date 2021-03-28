@@ -10,7 +10,7 @@ const chainMaker = {
     return this;
   },
   removeLink(position) {
-    if( typeof(position) != 'number' || position > this.arr.length || position <= 0 || (position^0) !== position   ) 
+    if( typeof(position) != 'number' || position > this.arr.length || position <= 0 ) 
     {
       this.arr.splice(0);
       throw new Error('Position number is not correct');
