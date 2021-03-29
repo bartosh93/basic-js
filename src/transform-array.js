@@ -1,26 +1,25 @@
 const CustomError = require("../extensions/custom-error");
-
+let arrr = [1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5];
 module.exports = function transform( arr ) {
-    arrNew = arr.slice()
-  
-    for (let i = 0; i < arrNew.length; ){
-        
-        if (arrNew[i] === '--double-next' && arrNew[i+1] !== undefined) {
-          arrNew[i] = arrNew[i+1] 
-      } else if (arrNew[i] === '--double-next') {
-        arrNew.splice(i, 1) 
-      } else if (arrNew[i] === '--double-prev' && arrNew[i-1] !== undefined) {
-        arrNew[i] = arrNew[i-1]
-      } else if (arrNew[i] === '--double-prev') {
-        arrNew.splice(i, 1)
-      } else if (arrNew[i] === '--discard-next') {
-        arrNew.splice(i, 1)
-      } else if (arrNew[i] === '--discard-prev' && arrNew[i-1] !== undefined)  {
-        arrNew.splice(i-1, 2)
-      } else if (arrNew[i] === '--discard-prev')  {
-        arrNew.splice(i, 1)
-      }
-      i++
+    let temparr = new Array;
+    if(!Array.isArray(arr)) {
+      throw new Error('Error')
+    };
+    for(let e = 0; e<arr.length; e++) {
+      temparr[e] = arr[e]
     }
-    return arrNew
+    for (let i = 0; i < temparr.length;i++ ){
+      if (temparr[i] === '--double-next' ) {
+        temparr[i] = temparr[i+1];    
+    }  else if (temparr[i] === '--double-prev' ) {
+      temparr[i] = temparr[i-1];  
+    }  else if (temparr[i] === '--discard-next' ) {
+      temparr[i] = ' '
+      temparr[i+1] = ' '
+    } else if (temparr[i] === '--discard-prev'  )  {
+      temparr[i] = ' '
+      temparr[i-1] = ' '
+    } 
+  }
+  return temparr.filter(x => x!==' '&&x!==undefined)
 };
