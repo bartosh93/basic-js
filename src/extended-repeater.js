@@ -28,7 +28,7 @@ module.exports = function repeater(str, options) {
 
   if (options.addition!==undefined) {
     let addition = options.addition;
-    subStr = str + addition;
+    subStr = String(str) + addition;
     if (additionRepeatTimes>1){
       for (let i = 2;i<=additionRepeatTimes;i++ ) {
         subStr +=  additionSeparator + addition ;
